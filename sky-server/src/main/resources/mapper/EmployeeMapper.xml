@@ -26,4 +26,7 @@
         </where>
         order by create_time desc
     </select>
+    <select id="getById" resultType="com.sky.entity.Employee">
+        select * from sky_take_out.employee where id=#{id}
+    </select>
 </mapper>
