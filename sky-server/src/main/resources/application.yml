@@ -38,7 +38,7 @@ sky:
     # 设置前端传递过来的令牌名称
     admin-token-name: token
   alioss:
-    endpoint: "https://oss-cn-guangzhou.aliyuncs.com"
-    access-key-id: "LTAI5tQJZ1SZM6Cyy12FiYJJ"
-    access-key-secret: "QfpHfJERuUTY23E6yl6v1rw9FQmT0K"
-    bucket-name: "web-tinyproject"
+    endpoint: ${sky.alioss.endpoint}
+    access-key-id: ${sky.alioss.access-key-id}
+    access-key-secret: ${sky.alioss.access-key-secret}
+    bucket-name: ${sky.alioss.bucket-name}
