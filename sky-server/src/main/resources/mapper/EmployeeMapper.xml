@@ -18,9 +18,9 @@
         where id = #{id}
     </update>
     <select id="pageQuery" resultType="com.sky.entity.Employee">
-        select * from sky_take_out.employee
+        select * from employee
         <where>
-            <if test="name!=null and name != ' ' " >
+            <if test="name != null">
                 and name like concat('%',#{name},'%')
             </if>
         </where>
