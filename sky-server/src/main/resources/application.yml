@@ -46,7 +46,7 @@ sky:
     # 设置jwt过期时间
     user-ttl: 7200000
     # 设置前端传递过来的令牌名称
-    user-token-name: token
+    user-token-name: authentication
   alioss:
     endpoint: ${sky.alioss.endpoint}
     access-key-id: ${sky.alioss.access-key-id}
