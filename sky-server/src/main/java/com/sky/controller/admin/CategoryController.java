@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import java.util.List;
 @RequestMapping("/admin/category")
 @Api(tags = "分类相关接口")
 @Slf4j
+
 public class CategoryController {
 
     @Autowired
@@ -30,6 +32,7 @@ public class CategoryController {
      * @param categoryDTO
      * @return
      */
+    @CacheEvict(cacheNames = "setmealCache",allEntries = true)
     @PostMapping
     @ApiOperation("新增分类")
     public Result<String> save(@RequestBody CategoryDTO categoryDTO){
@@ -56,6 +59,7 @@ public class CategoryController {
      * @param id
      * @return
      */
+    @CacheEvict(cacheNames = "setmealCache",key = "#id")
     @DeleteMapping
     @ApiOperation("删除分类")
     public Result<String> deleteById(Long id){
@@ -69,6 +73,7 @@ public class CategoryController {
      * @param categoryDTO
      * @return
      */
+    @CacheEvict(cacheNames = "setmealCache",allEntries = true)
     @PutMapping
     @ApiOperation("修改分类")
     public Result<String> update(@RequestBody CategoryDTO categoryDTO){
@@ -82,6 +87,7 @@ public class CategoryController {
      * @param id
      * @return
      */
+    @CacheEvict(cacheNames = "setmealCache",key = "#id")
     @PostMapping("/status/{status}")
     @ApiOperation("启用禁用分类")
     public Result<String> startOrStop(@PathVariable("status") Integer status, Long id){
