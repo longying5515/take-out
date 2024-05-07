@@ -1,14 +1,11 @@
 package com.sky.controller.user;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.sky.context.BaseContext;
 import com.sky.dto.CommentQueryDTO;
 import com.sky.entity.Comment;
-import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,10 +28,10 @@ public class CommentController {
         return Result.success();
     }
     @GetMapping("/comments")
-    public IPage<Comment> getComments(@RequestBody CommentQueryDTO commentQueryDTO) {
+    public Result<IPage<Comment>> getComments(@RequestBody CommentQueryDTO commentQueryDTO) {
         log.info("commentQueryDTO:{}", commentQueryDTO);
-        var result=commentService.getComments(commentQueryDTO);
-        return Result.success(result).getData();
+        IPage<Comment> result = commentService.getComments(commentQueryDTO);
+        return Result.success(result);
     }
     @DeleteMapping("/comments/{id}")
     public Result deleteComment(@PathVariable long id) {
