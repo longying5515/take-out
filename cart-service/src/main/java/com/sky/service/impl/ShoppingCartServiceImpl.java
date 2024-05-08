@@ -1,17 +1,16 @@
 package com.sky.service.impl;
 
-import com.sky.context.BaseContext;
-import com.sky.mapper.DishMapper;
-import com.sky.mapper.SetmealMapper;
-import com.sky.result.Result;
+import com.sky.client.ItemClient;
 import com.sky.dao.ShoppingCartMapper;
+import com.sky.pojo.dto.ShoppingCartDTO;
+import com.sky.pojo.entity.Dish;
+import com.sky.pojo.entity.ShoppingCart;
+import com.sky.result.Result;
+import com.sky.service.ShoppingCartService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import com.sky.pojo.dto.ShoppingCartDTO;
-import com.sky.pojo.entity.ShoppingCart;
-import com.sky.service.ShoppingCartService;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,9 +21,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Autowired
     private ShoppingCartMapper shoppingCartMapper;
     @Autowired
-    private DishMapper dishMapper;
-    @Autowired
-    private SetmealMapper setmealMapper;
+    private ItemClient itemClient;
+//    @Autowired
+//    private SetmealMapper setmealMapper;
     @Autowired
     private ShoppingCartService shoppingCartService;
 
@@ -37,7 +36,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ShoppingCart shoppingCart = new ShoppingCart();
         BeanUtils.copyProperties(shoppingCartDTO, shoppingCart);
         //只能查询自己的购物车数据
-        shoppingCart.setUserId(BaseContext.getCurrentId());
+        shoppingCart.setUserId(/*BaseContext.getCurrentId()*/4L);
 
         //判断当前商品是否在购物车中
         List<ShoppingCart> shoppingCartList = shoppingCartMapper.list(shoppingCart);
@@ -54,11 +53,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             Long dishId = shoppingCartDTO.getDishId();
             if (dishId != null) {
                 //添加到购物车的是菜品
-                //TODO:根据菜品id查询菜品数据
-//                Dish dish = dishMapper.getById(dishId);
-//                shoppingCart.setName(dish.getName());
-//                shoppingCart.setImage(dish.getImage());
-//                shoppingCart.setAmount(dish.getPrice());
+                Result<Dish> result = itemClient.selectById(dishId);
+                Dish dish=result.getData();
+                shoppingCart.setName(dish.getName());
+                shoppingCart.setImage(dish.getImage());
+                shoppingCart.setAmount(dish.getPrice());
             } else {
                 //添加到购物车的是套餐
                 //TODO:根据套餐id查询套餐数据
