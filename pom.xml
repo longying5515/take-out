@@ -19,6 +19,7 @@
 
         <module>item-service</module>
         <module>cart-service</module>
+        <module>gateway</module>
     </modules>
     <properties>
         <mybatis.spring>2.2.0</mybatis.spring>

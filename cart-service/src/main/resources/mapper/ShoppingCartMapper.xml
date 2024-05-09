@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sky.dao.ShoppingCartMapper">
-    <select id="list" parameterType="com.sky.pojo.entity.ShoppingCart" resultType="com.sky.pojo.entity.ShoppingCart">
+    <select id="list" parameterType="com.zyt.pojo.entity.ShoppingCart" resultType="com.zyt.pojo.entity.ShoppingCart">
         select * from shopping_cart
         <where>
             <if test="userId != null">

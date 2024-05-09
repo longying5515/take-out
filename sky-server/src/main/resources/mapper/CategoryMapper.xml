@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sky.mapper.CategoryMapper">
 
-    <select id="pageQuery" resultType="com.sky.entity.Category">
+    <select id="pageQuery" resultType="com.zyt.entity.Category">
         select * from category
         <where>
             <if test="name != null and name != ''">

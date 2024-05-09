@@ -17,7 +17,7 @@
         </set>
         where id = #{id}
     </update>
-    <select id="pageQuery" resultType="com.sky.entity.Employee">
+    <select id="pageQuery" resultType="com.zyt.entity.Employee">
         select * from employee
         <where>
             <if test="name != null">
@@ -26,7 +26,7 @@
         </where>
         order by create_time desc
     </select>
-    <select id="getById" resultType="com.sky.entity.Employee">
+    <select id="getById" resultType="com.zyt.entity.Employee">
         select * from sky_take_out.employee where id=#{id}
     </select>
 </mapper>
