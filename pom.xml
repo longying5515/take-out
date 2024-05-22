@@ -13,9 +13,9 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>sky-common</module>
-        <module>sky-pojo</module>
-        <module>sky-server</module>
+        <module>common</module>
+        <module>pojo</module>
+        <module>server</module>
 
         <module>item-service</module>
         <module>cart-service</module>

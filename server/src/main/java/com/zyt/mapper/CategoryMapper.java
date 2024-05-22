@@ -3,9 +3,9 @@ package com.zyt.mapper;
 
 import com.github.pagehelper.Page;
 import com.zyt.annocation.AutoFill;
-import com.zyt.enumeration.OperationType;
 import com.zyt.dto.CategoryPageQueryDTO;
 import com.zyt.entity.Category;
+import com.zyt.enumeration.OperationType;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -22,7 +22,7 @@ public interface CategoryMapper {
      * @param category
      * @return
      */
-    @AutoFill(value=OperationType.INSERT)
+    @AutoFill(value= OperationType.INSERT)
     @Insert("insert into category(type, name, sort, status, create_time, update_time, create_user, update_user)" +
             " VALUES" +
             " (#{type}, #{name}, #{sort}, #{status}, #{createTime}, #{updateTime}, #{createUser}, #{updateUser})")
@@ -55,4 +55,5 @@ public interface CategoryMapper {
      * @return
      */
     List<Category> list(Integer type);
+
 }
